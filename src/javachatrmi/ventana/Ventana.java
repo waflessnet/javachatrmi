@@ -58,10 +58,11 @@ public class Ventana {
         ventana.add(this.jpIzquerda,BorderLayout.EAST);
         //eventos 
         
-        
-        ventana.pack();
+        ventana.setSize(500, 300);
+        //ventana.pack();
         ventana.setVisible(true);
         ventana.setResizable(true);
+        ventana.setLocationRelativeTo(null);
         ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
     }

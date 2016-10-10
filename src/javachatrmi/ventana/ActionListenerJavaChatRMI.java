@@ -17,7 +17,7 @@ import javax.swing.text.StyledDocument;
  */
 public class ActionListenerJavaChatRMI  {
   
-    public  void appendString(String str) throws BadLocationException
+    public static void appendString(String str) throws BadLocationException
     {
      str = str + "\n";
      StyledDocument document = (StyledDocument) Ventana.editor.getDocument();

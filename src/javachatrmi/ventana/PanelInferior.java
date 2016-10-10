@@ -36,9 +36,9 @@ public class PanelInferior {
         btn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                ActionListenerJavaChatRMI a = new ActionListenerJavaChatRMI();
+                
                 try {
-                    a.appendString(chat.getText());
+                    ActionListenerJavaChatRMI.appendString(chat.getText());
                 } catch (BadLocationException ex) {
                     Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -53,9 +53,8 @@ public class PanelInferior {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER)
                     {
-                      ActionListenerJavaChatRMI a = new ActionListenerJavaChatRMI();
                         try {
-                            a.appendString(chat.getText());
+                            ActionListenerJavaChatRMI.appendString(chat.getText());
                         } catch (BadLocationException ex) {
                             Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -72,12 +71,5 @@ public class PanelInferior {
     }
     public JPanel getPanel(){
         return this.panel;
-    }
-     public void appendString(String str) throws BadLocationException
-    {
-     str = str + "\n";
-     StyledDocument document = (StyledDocument) Ventana.editor.getDocument();
-     document.insertString(document.getLength(), str, null);
-                                                    // agregar style 
     }
 }
