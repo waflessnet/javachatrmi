@@ -17,6 +17,7 @@ public class Servidor {
         System.out.println ("*** Iniciando Servidor ***");
         System.setProperty("java.rmi.server.hostname",servidor);
         Registry registry = LocateRegistry.createRegistry(port);
-        registry.rebind("Server", new ObjetoRemoto());
+        registry.rebind("Server", new ObjetoServidorRemoto());
+        
     }
 }

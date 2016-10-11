@@ -10,8 +10,9 @@ import java.rmi.RemoteException;
  *
  * @author waflessnet
  */
-public interface InterfazRemota extends Remote {
+public interface InterfazRemotaServidor extends Remote {
  
-  public void  mostrarMensaje(String r) throws RemoteException;
-  public boolean registrar(String r) throws RemoteException;
+  public void  distribuirMensaje(String mensaje) throws RemoteException;
+  public boolean registrar(String login) throws RemoteException;
+  public boolean desconectar(String login) throws RemoteException;
 }
