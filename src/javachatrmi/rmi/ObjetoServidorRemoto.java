@@ -24,8 +24,14 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
     }
 
     @Override
-    public boolean registrar(String r) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean registrar(String login) throws RemoteException {
+        chacalitosRegistrados.add(login);
+        System.out.println("== Registrado: "+login+ " == ");
+        for (final String name : Servidor.boundNames)
+         {
+            System.out.println("\t" + name);
+         }
+        return true;
     }
 
     @Override

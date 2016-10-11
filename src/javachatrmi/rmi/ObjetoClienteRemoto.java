@@ -21,10 +21,9 @@ public class ObjetoClienteRemoto extends UnicastRemoteObject implements Interfaz
      *
      * @throws java.rmi.RemoteException
      */
-    ArrayList<String> chacalitosRegistrados;
     
     public ObjetoClienteRemoto() throws RemoteException{
-        chacalitosRegistrados = new ArrayList();
+        
     }
     @Override
     public void mostrarMensaje(String mensaje) throws RemoteException {

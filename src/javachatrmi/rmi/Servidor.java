@@ -12,12 +12,14 @@ import java.rmi.registry.Registry;
  * @author waflessnet
  */
 public class Servidor {
-    
+    static Registry  registry;
+    static String[] boundNames;
     public Servidor(String servidor,Integer port) throws RemoteException{
         System.out.println ("*** Iniciando Servidor ***");
         System.setProperty("java.rmi.server.hostname",servidor);
-        Registry registry = LocateRegistry.createRegistry(port);
-        registry.rebind("Server", new ObjetoServidorRemoto());
+        Servidor.registry = LocateRegistry.createRegistry(port);
+        Servidor.registry.rebind("Server", new ObjetoServidorRemoto());
+        // = Servidor.registry.list();
         
     }
 }

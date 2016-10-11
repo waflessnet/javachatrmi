@@ -88,6 +88,7 @@ public class PanelSuperior {
                          String nick = jtnick.getText();
                     try {
                         Cliente cliente = new Cliente(ip,nick);
+                        JOptionPane.showMessageDialog(panel, "Conectado al servidor correctamente!");
                     } catch (RemoteException | NotBoundException | MalformedURLException ex) {
                         Logger.getLogger(PanelSuperior.class.getName()).log(Level.SEVERE, null, ex);
                     }
