@@ -5,7 +5,6 @@
  */
 package javachatrmi.ventana;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 
 
 import javax.swing.*;
@@ -58,7 +57,7 @@ public class Ventana {
         ventana.add(this.jpIzquerda,BorderLayout.EAST);
         //eventos 
         
-        ventana.setSize(500, 300);
+        ventana.setSize(500, 500);
         //ventana.pack();
         ventana.setVisible(true);
         ventana.setResizable(true);

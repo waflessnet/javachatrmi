@@ -22,7 +22,7 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
      */
     ArrayList<String> chacalitosRegistrados;
     public static ArrayList clienteList;
-    public static ArrayList usuariosList;
+    public static ArrayList<Usuario> usuariosList;
     
     public ObjetoServidorRemoto() throws RemoteException{
         this.chacalitosRegistrados = new ArrayList();
@@ -34,15 +34,26 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
     public synchronized Usuario  registrar(String login,InterfazRemotaCliente cliente) throws RemoteException {
         
         Usuario userAux = new Usuario("",new Color(1,1,1),-1);
-        if (!(ObjetoServidorRemoto.clienteList.contains(cliente))){
-                    ObjetoServidorRemoto.clienteList.add(cliente);
-                    System.out.println("== Registrado: "+login+ " == ");
-                    System.out.println("== Asignando caracteristicas== ");
-                    userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
-                    ObjetoServidorRemoto.usuariosList.add(userAux);
-                    
+        if(!this.chacalitosRegistrados.contains(login)) {
+            if (!(ObjetoServidorRemoto.clienteList.contains(cliente))){
+                this.chacalitosRegistrados.add(login);
+                ObjetoServidorRemoto.clienteList.add(cliente);
+                userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
+                ObjetoServidorRemoto.usuariosList.add(userAux);
+                this.actualizarListaUsuarios();
+            }
         }
         return  userAux;
+    }
+    /**
+     * actualiza  la lista de usuarios en todos los clientes
+     * @throws java.rmi.RemoteException
+     */
+    public synchronized void actualizarListaUsuarios() throws RemoteException{
+        for(int i=0;i<ObjetoServidorRemoto.clienteList.size();i++){
+            InterfazRemotaCliente clientes =  (InterfazRemotaCliente) ObjetoServidorRemoto.clienteList.get(i);
+            clientes.listarUsuarios(ObjetoServidorRemoto.usuariosList);
+        }
     }
 
     @Override

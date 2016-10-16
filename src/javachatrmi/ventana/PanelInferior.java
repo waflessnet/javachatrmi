@@ -19,8 +19,6 @@ import javachatrmi.rmi.Cliente;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -36,10 +34,12 @@ public class PanelInferior {
         btn.setPreferredSize(new Dimension(20, 20));
         
         btn.addActionListener(new ActionListener(){
+            private String mensaje;
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Cliente.servidor.distribuirMensaje(chat.getText(),Cliente.Chacalito.getColor());
+                     this.mensaje = "<" +Cliente.Chacalito.getNick()+">:"+  chat.getText();
+                    Cliente.servidor.distribuirMensaje(this.mensaje,Cliente.Chacalito.getColor());
                 } catch (RemoteException ex) {
                     Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -50,12 +50,14 @@ public class PanelInferior {
         });
         
         chat.addKeyListener(new KeyAdapter(){
+            private String mensaje;
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER)
                     {
                         try {
-                            Cliente.servidor.distribuirMensaje(chat.getText(),Cliente.Chacalito.getColor());
+                            this.mensaje = "<" +Cliente.Chacalito.getNick()+">:"+  chat.getText();
+                             Cliente.servidor.distribuirMensaje(this.mensaje,Cliente.Chacalito.getColor());
                         } catch (RemoteException ex) {
                             Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                         }

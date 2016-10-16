@@ -82,14 +82,19 @@ public class PanelSuperior {
                      "Nick:",jtnick
                         
                 };
-                int option = JOptionPane.showConfirmDialog(panel, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(panel, message, "Ingrese la IP y el Nick", JOptionPane.OK_CANCEL_OPTION);
                 if (option == JOptionPane.OK_OPTION)
                      {   
                          String ip = jtip.getText();
                          String nick = jtnick.getText();
                     try {
                         Cliente cliente = new Cliente(ip,nick);
-                        JOptionPane.showMessageDialog(panel, "Conectado al servidor correctamente!");
+                        if(cliente.estado == 1){
+                            JOptionPane.showMessageDialog(panel, "Conectado al servidor correctamente!");
+                        }else{
+                            JOptionPane.showMessageDialog(panel, "El usuario ingresado ya esta regitrado!");
+                        }
+                        
                     } catch (RemoteException | NotBoundException | MalformedURLException ex) {
                         Logger.getLogger(PanelSuperior.class.getName()).log(Level.SEVERE, null, ex);
                     }

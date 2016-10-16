@@ -6,9 +6,6 @@
 package javachatrmi.ventana;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -28,7 +25,6 @@ public class ActionListenerJavaChatRMI  {
      StyleConstants.setBold(set, true);
      StyleConstants.setItalic(set, true);
      StyleConstants.setForeground(set,color);
-     
      str = str + "\n";
      StyledDocument document = (StyledDocument) Ventana.editor.getDocument();
      document.insertString(document.getLength(), str, set);

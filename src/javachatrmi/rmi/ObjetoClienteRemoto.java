@@ -10,7 +10,9 @@ import java.rmi.server.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javachatrmi.Usuario;
 import javachatrmi.ventana.ActionListenerJavaChatRMI;
+import javachatrmi.ventana.PanelIzquerda;
 import javax.swing.text.BadLocationException;
 /**
  *
@@ -34,8 +36,8 @@ public class ObjetoClienteRemoto extends UnicastRemoteObject implements Interfaz
         }
     }
 
-    
-
-    
-    
+    @Override
+    public void listarUsuarios(ArrayList<Usuario> usuarios) throws RemoteException {
+        PanelIzquerda.modificarTablaUsuarios(usuarios);
+    }    
 }
