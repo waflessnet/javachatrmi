@@ -49,7 +49,7 @@ public class Ventana {
         Ventana.editor = new JEditorPane();
         Ventana.editor.setContentType("text/html");
         Ventana.editor.setText("<b><font face='arial'> *** DEEP WEB CHACALITO *** </font> </b>");
-        Ventana.editor.setEnabled(false);
+        //Ventana.editor.setEnabled(false);
         // agregamos los paneles 
         ventana.setLayout(new BorderLayout());
         ventana.add(Ventana.editor, BorderLayout.CENTER);

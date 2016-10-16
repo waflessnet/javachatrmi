@@ -12,8 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javachatrmi.rmi.Cliente;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -36,10 +38,9 @@ public class PanelInferior {
         btn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 try {
-                    ActionListenerJavaChatRMI.appendString(chat.getText());
-                } catch (BadLocationException ex) {
+                    Cliente.servidor.distribuirMensaje(chat.getText(),Cliente.Chacalito.getColor());
+                } catch (RemoteException ex) {
                     Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 chat.setText("");
@@ -54,8 +55,8 @@ public class PanelInferior {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER)
                     {
                         try {
-                            ActionListenerJavaChatRMI.appendString(chat.getText());
-                        } catch (BadLocationException ex) {
+                            Cliente.servidor.distribuirMensaje(chat.getText(),Cliente.Chacalito.getColor());
+                        } catch (RemoteException ex) {
                             Logger.getLogger(PanelInferior.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         chat.setText("");

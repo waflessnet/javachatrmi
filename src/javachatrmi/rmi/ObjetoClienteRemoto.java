@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package javachatrmi.rmi;
+import java.awt.Color;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
@@ -23,15 +24,18 @@ public class ObjetoClienteRemoto extends UnicastRemoteObject implements Interfaz
      */
     
     public ObjetoClienteRemoto() throws RemoteException{
-        
     }
     @Override
-    public void mostrarMensaje(String mensaje) throws RemoteException {
+    public void mostrarMensaje(String mensaje,Color color) throws RemoteException {
         try {
-            ActionListenerJavaChatRMI.appendString(mensaje);
+            ActionListenerJavaChatRMI.appendString(mensaje,color);
         } catch (BadLocationException ex) {
             Logger.getLogger(ObjetoClienteRemoto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
+
+    
     
 }

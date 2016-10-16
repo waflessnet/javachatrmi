@@ -5,10 +5,13 @@
  */
 package javachatrmi.ventana;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 /**
@@ -17,11 +20,18 @@ import javax.swing.text.StyledDocument;
  */
 public class ActionListenerJavaChatRMI  {
   
-    public static void appendString(String str) throws BadLocationException
+    public static void appendString(String str,Color color) throws BadLocationException
     {
+     SimpleAttributeSet set = new SimpleAttributeSet();
+     StyleConstants.setFontFamily(set, "Monospace");
+     //StyleConstants.setFontSize(set, 22);
+     StyleConstants.setBold(set, true);
+     StyleConstants.setItalic(set, true);
+     StyleConstants.setForeground(set,color);
+     
      str = str + "\n";
      StyledDocument document = (StyledDocument) Ventana.editor.getDocument();
-     document.insertString(document.getLength(), str, null);
+     document.insertString(document.getLength(), str, set);
                                                     // ^ or your style attribute  
     }
 

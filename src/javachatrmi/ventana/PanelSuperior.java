@@ -5,6 +5,7 @@
  */
 package javachatrmi.ventana;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
-import javachatrmi.ventana.ActionListenerJavaChatRMI;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 
@@ -62,7 +62,8 @@ public class PanelSuperior {
                 try {
                     Servidor servidor1 = new Servidor(response,1099);
                     JOptionPane.showMessageDialog(panel, "Servidor Iniciado Correctamente");
-                    ActionListenerJavaChatRMI.appendString("\n *** ENTREGAR  IP:"+response+" A LOS CHACALITOS QUE SE QUIEREN CONECTAR *** ");
+                    Color color = new Color(255,0,0);
+                    ActionListenerJavaChatRMI.appendString("\n *** ENTREGAR  IP:"+response+" A LOS CHACALITOS QUE SE QUIEREN CONECTAR *** ",color);
                 } catch (RemoteException | BadLocationException ex) {
                     Logger.getLogger(PanelSuperior.class.getName()).log(Level.SEVERE, null, ex);
                 }
