@@ -44,9 +44,6 @@ public final class PanelIzquerda {
     public ChatRMITablaModel definirTablaUsuarios(){
         PanelIzquerda.TablaModel = new ChatRMITablaModel();
         PanelIzquerda.TablaModel.addColumn("Chacalitos");
-        Vector row = new Vector();
-        //row.add("aers");
-        PanelIzquerda.TablaModel.addRow(row);
         return PanelIzquerda.TablaModel;
     }
     

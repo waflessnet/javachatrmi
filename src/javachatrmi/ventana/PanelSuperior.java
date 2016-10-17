@@ -12,17 +12,20 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javachatrmi.rmi.Servidor;
 import javachatrmi.rmi.Cliente;
 import javax.swing.Box;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.text.BadLocationException;
 
 /**
@@ -58,7 +61,14 @@ public class PanelSuperior {
         servidor.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                String response = JOptionPane.showInputDialog(panel, "Direccion IP a utilizar.");
+                
+                 JList listIP = new JList(javachatrmi.ventana.ActionListenerJavaChatRMI.getIP());
+                 
+                JOptionPane.showMessageDialog(
+                null, listIP, "Seleccione IP para iniciar como servidor", JOptionPane.PLAIN_MESSAGE);
+                 //System.out.println(listIP.getSelectedValue().toString());
+                 //System.out.println(Arrays.toString(listIP.getListSelectionListeners()));
+                String response = listIP.getSelectedValue().toString();
                 try {
                     Servidor servidor1 = new Servidor(response,1099);
                     JOptionPane.showMessageDialog(panel, "Servidor Iniciado Correctamente");

@@ -6,6 +6,13 @@
 package javachatrmi.ventana;
 
 import java.awt.Color;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -29,6 +36,32 @@ public class ActionListenerJavaChatRMI  {
      StyledDocument document = (StyledDocument) Ventana.editor.getDocument();
      document.insertString(document.getLength(), str, set);
                                                     // ^ or your style attribute  
+    }
+    public static Object[] getIP(){
+        ArrayList  ips = new ArrayList();
+       try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+               /* if (iface.isLoopback() || !iface.isUp() || iface.isVirtual() || iface.isPointToPoint()) {
+                    continue;
+                }*/
+               
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while(addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+
+                    final String ip = addr.getHostAddress();
+                    if(Inet4Address.class == addr.getClass()) {
+                       ips.add(ip);
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+        Object[] axu =  ips.toArray(new String[ips.size()]);
+       return axu;
     }
 
     

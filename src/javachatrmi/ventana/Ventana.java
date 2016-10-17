@@ -18,13 +18,13 @@ import javax.swing.*;
 public class Ventana {
     
     /* panel superior */
-    private JPanel jpSuperior;
+    private final JPanel jpSuperior;
     /* panel superior */
-    private JPanel jpInferior;
+    private final JPanel jpInferior;
     /* panel superior */
     private JPanel jpDerecha;
     /* panel superior */
-    private JPanel jpIzquerda;
+    private final JPanel jpIzquerda;
     
     public static JEditorPane editor;
     
