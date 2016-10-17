@@ -17,4 +17,5 @@ public interface InterfazRemotaServidor extends Remote {
   public void  distribuirMensaje(String mensaje,Color color) throws RemoteException;
   public Usuario registrar(String login,InterfazRemotaCliente cliente) throws RemoteException;
   public boolean desconectar(String login) throws RemoteException;
+  public void actualizarListaUsuarios() throws RemoteException;
 }

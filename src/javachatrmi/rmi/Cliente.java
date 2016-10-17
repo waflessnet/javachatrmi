@@ -27,6 +27,7 @@ public class Cliente {
             Cliente.Chacalito = Cliente.servidor.registrar(nick,Cliente.cliente);
             if(Cliente.Chacalito.getIndex() != -1){
                 this.estado = 1;
+                Cliente.servidor.actualizarListaUsuarios();
             }
             
 

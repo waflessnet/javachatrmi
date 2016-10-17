@@ -7,7 +7,6 @@ package javachatrmi.ventana;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,17 +49,19 @@ public final class PanelIzquerda {
     public static ChatRMITablaModel  modificarTablaUsuarios(ArrayList<Usuario> usuarios){
         //this.TablaModel.r
         PanelIzquerda.eliminarListaUsuarios();
-        Vector row = new Vector();
+        System.out.println(usuarios.size());
         for(int i = 0; i < usuarios.size(); i++){
-               row.add(usuarios.get(i).getNick());
+               PanelIzquerda.TablaModel.addRow(new Object[] {usuarios.get(i).getNick()} );
+               
         }
-        PanelIzquerda.TablaModel.addRow(row);
+        
         return PanelIzquerda.TablaModel;
     }
     private static void eliminarListaUsuarios(){
         int c = PanelIzquerda.TablaModel.getRowCount();
-        for(int i=0;i<c-1;i++){
+        for(int i=0;i<c;i++){
             PanelIzquerda.TablaModel.removeRow(i);
+            System.out.println("eliminando lista"+ i);
         }
         
     }

@@ -40,7 +40,7 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
                 ObjetoServidorRemoto.clienteList.add(cliente);
                 userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
                 ObjetoServidorRemoto.usuariosList.add(userAux);
-                this.actualizarListaUsuarios();
+                
             }
         }
         return  userAux;
@@ -49,6 +49,7 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
      * actualiza  la lista de usuarios en todos los clientes
      * @throws java.rmi.RemoteException
      */
+    @Override
     public synchronized void actualizarListaUsuarios() throws RemoteException{
         for(int i=0;i<ObjetoServidorRemoto.clienteList.size();i++){
             InterfazRemotaCliente clientes =  (InterfazRemotaCliente) ObjetoServidorRemoto.clienteList.get(i);
