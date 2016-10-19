@@ -39,5 +39,9 @@ public class ObjetoClienteRemoto extends UnicastRemoteObject implements Interfaz
     @Override
     public void listarUsuarios(ArrayList<Usuario> usuarios) throws RemoteException {
         PanelIzquerda.modificarTablaUsuarios(usuarios);
+        for (Usuario usuario : usuarios) {
+            System.out.println("== Usuario : "+usuario.getNick()+"  == ");
+            
+        }
     }    
 }

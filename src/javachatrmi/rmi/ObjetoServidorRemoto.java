@@ -65,10 +65,16 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
             clientes.mostrarMensaje(mensaje,color);
         }
     }
-
     @Override
-    public boolean desconectar(String login) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean desconectar(InterfazRemotaCliente cliente) throws RemoteException {
+         
+         for(int i=0; i < ObjetoServidorRemoto.clienteList.size();i++ ){
+                if(ObjetoServidorRemoto.clienteList.get(i).equals(cliente)){
+                    ObjetoServidorRemoto.clienteList.remove(i);
+                     System.out.println("== Desconectado del server ==");
+                }
+         }
+        return true;
     }
     public Color obtenerColor(){
         int R = (int) (Math.random( )*256);
