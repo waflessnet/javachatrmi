@@ -70,8 +70,15 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
          
          for(int i=0; i < ObjetoServidorRemoto.clienteList.size();i++ ){
                 if(ObjetoServidorRemoto.clienteList.get(i).equals(cliente)){
+                    System.out.println("========================================================================================");
+                    System.out.println("==SERVER: desconectar usuario [DESCONECTAR] ");
+                    System.out.println("==SERVER: cantidad de usuarios  " +ObjetoServidorRemoto.clienteList.size() );
+                    System.out.println("==SERVER: Desconectando a objava server  ==" + ObjetoServidorRemoto.clienteList.get(i).toString() );
+                    System.out.println("==SERVER: Desconectando a objava cliente ==" + cliente.toString() );
                     ObjetoServidorRemoto.clienteList.remove(i);
-                     System.out.println("== Desconectado del server ==");
+                    System.out.println("==SERVER: cantidad de usuarios  " +ObjetoServidorRemoto.clienteList.size() );
+                    System.out.println("==SERVER: Desconectado del server ==");
+                    System.out.println("========================================================================================");
                 }
          }
         return true;

@@ -40,30 +40,39 @@ public final class PanelIzquerda {
     public JPanel getPanel(){
         return this.panel;
     }
-    public ChatRMITablaModel definirTablaUsuarios(){
+    public synchronized ChatRMITablaModel definirTablaUsuarios(){
         PanelIzquerda.TablaModel = new ChatRMITablaModel();
         PanelIzquerda.TablaModel.addColumn("Chacalitos");
         return PanelIzquerda.TablaModel;
     }
     
-    public static ChatRMITablaModel  modificarTablaUsuarios(ArrayList<Usuario> usuarios){
+    public synchronized static ChatRMITablaModel  modificarTablaUsuarios(ArrayList<Usuario> usuarios){
         //this.TablaModel.r
         PanelIzquerda.eliminarListaUsuarios();
-        System.out.println(usuarios.size());
+       System.out.println("========================================================================================");
+        System.out.println("== [ARRAY LIST USUARIOS ] [modificarTablaUsuarios]  == ");
+        System.out.println("== CANTIDAD DE USUARIOS ENVIADOS DEL SERVER "+usuarios.size()+ " == ");
+        System.out.println("== CANTIDAD DE USUARIOS EN LA LISTA DEL PANEL "+PanelIzquerda.TablaModel.getRowCount()+ " == ");
         for(int i = 0; i < usuarios.size(); i++){
+               System.out.println("== DEBEN APARECER "+usuarios.get(i).getNick()+ " == ");
                PanelIzquerda.TablaModel.addRow(new Object[] {usuarios.get(i).getNick()} );
-               
         }
-        
+        System.out.println("== [/ARRAY LIST USUARIOS ]  == ");
+        System.out.println("========================================================================================");
         return PanelIzquerda.TablaModel;
     }
-    private static void eliminarListaUsuarios(){
+    private synchronized static void eliminarListaUsuarios(){
         int c = PanelIzquerda.TablaModel.getRowCount();
+        System.out.println("========================================================================================");
+        System.out.println("== [ELIMINAR] [eliminarListaUsuarios] == ");
+        System.out.println("== CANTIDAD DE ROW == " +c );
+        System.out.println("== CANTIDAD DE VECTOR == " + PanelIzquerda.TablaModel.getDataVector().size());
         for(int i=0;i<c;i++){
+            System.out.println("ELIMINADO DE LA LISTA : "+ PanelIzquerda.TablaModel.getDataVector().elementAt(i));
             PanelIzquerda.TablaModel.removeRow(i);
-            System.out.println("eliminando lista"+ i);
         }
-        
+        System.out.println("== [/ELIMINAR]  == ");
+        System.out.println("========================================================================================");
     }
     
 }
