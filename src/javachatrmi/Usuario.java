@@ -16,6 +16,8 @@ public class Usuario implements Serializable{
      private String nick;
      private Color color ;
      private final int  index; 
+
+     private String pass;
      
      public Usuario(String nick,Color color,int index){
          this.color = color;
@@ -38,5 +40,11 @@ public class Usuario implements Serializable{
     public int getIndex(){
         return this.index;
     }
-     
+    public void setPass(String pass){
+        this.pass = pass;
+    }
+    
+    public String getPass() {
+        return this.pass;
+    }
 }

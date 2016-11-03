@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
+import javachatrmi.ConexionSqlLite;
 import javachatrmi.Usuario;
 
 /**
@@ -23,12 +24,13 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
     ArrayList<String> chacalitosRegistrados;
     public static ArrayList clienteList;
     public static ArrayList<Usuario> usuariosList;
-    
+    public ConexionSqlLite lite;
     public ObjetoServidorRemoto() throws RemoteException{
         this.chacalitosRegistrados = new ArrayList();
         ObjetoServidorRemoto.clienteList = new ArrayList();
         ObjetoServidorRemoto.usuariosList = new ArrayList();
-        
+        lite = new ConexionSqlLite(); 
+        lite.connect(); 
     }
     @Override
     public synchronized Usuario  registrar(String login,InterfazRemotaCliente cliente) throws RemoteException {
@@ -40,7 +42,9 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
                 ObjetoServidorRemoto.clienteList.add(cliente);
                 userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
                 ObjetoServidorRemoto.usuariosList.add(userAux);
-                
+                userAux.setPass("123");
+                lite.guardarUsuario(userAux);
+                //lite.close();
             }
         }
         return  userAux;

@@ -22,4 +22,6 @@ public class Servidor {
         // = Servidor.registry.list();
         
     }
+    //create database
+    // create table usuario(id integer primary key autoincrement,nick varchar(140),pass varchar(140));
 }

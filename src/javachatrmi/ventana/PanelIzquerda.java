@@ -46,7 +46,7 @@ public final class PanelIzquerda {
         return PanelIzquerda.TablaModel;
     }
     
-    public synchronized static ChatRMITablaModel  modificarTablaUsuarios(ArrayList<Usuario> usuarios){
+    public static ChatRMITablaModel  modificarTablaUsuarios(ArrayList<Usuario> usuarios){
         //this.TablaModel.r
         PanelIzquerda.eliminarListaUsuarios();
        System.out.println("========================================================================================");
@@ -61,7 +61,7 @@ public final class PanelIzquerda {
         System.out.println("========================================================================================");
         return PanelIzquerda.TablaModel;
     }
-    private synchronized static void eliminarListaUsuarios(){
+    private static void eliminarListaUsuarios(){
         int c = PanelIzquerda.TablaModel.getRowCount();
         System.out.println("========================================================================================");
         System.out.println("== [ELIMINAR] [eliminarListaUsuarios] == ");
