@@ -28,7 +28,7 @@ public class ConexionSqlLite {
  try {
      Path currentRelativePath = Paths.get("");
      String s = currentRelativePath.toAbsolutePath().toString();
-     String url = Paths.get(s+"\\dbusuarios").toAbsolutePath().normalize().toString();
+     String url = Paths.get(s+System.getProperty("file.separator") +"dbusuarios").toAbsolutePath().normalize().toString();
      connect = DriverManager.getConnection("jdbc:sqlite:"+url);
      if (connect!=null) {
          System.out.println("Conectado");
