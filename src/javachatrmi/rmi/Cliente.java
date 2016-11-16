@@ -10,6 +10,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import javachatrmi.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,14 +21,16 @@ public class Cliente {
         public static  InterfazRemotaCliente  cliente;
         public static  Usuario Chacalito;
         public int  estado = 0;
-    public Cliente(String ipservidor,String nick) throws RemoteException, NotBoundException, MalformedURLException{
+    public Cliente(String ipservidor,String nick,String pass) throws RemoteException, NotBoundException, MalformedURLException{
         
             Cliente.servidor = (InterfazRemotaServidor) Naming.lookup("rmi://"+ipservidor+":1099/Server");
             Cliente.cliente = new ObjetoClienteRemoto();
-            Cliente.Chacalito = Cliente.servidor.registrar(nick,Cliente.cliente);
+            Cliente.Chacalito = Cliente.servidor.registrar(nick,pass ,Cliente.cliente);
             if(Cliente.Chacalito.getIndex() != -1){
                 this.estado = 1;
                 Cliente.servidor.actualizarListaUsuarios();
+            }else{
+                JOptionPane.showMessageDialog(null,"La password ingresada no es válida");
             }
             
 

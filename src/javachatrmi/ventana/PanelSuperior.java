@@ -85,9 +85,12 @@ public class PanelSuperior {
             public void actionPerformed(ActionEvent e) {
                 JTextField jtip = new JTextField();
                 JTextField jtnick = new JTextField();
+                JTextField jtPassword = new JTextField();
                 Object[] message = {
                      "IP:",jtip,
-                     "Nick:",jtnick
+                     "Nick:",jtnick,
+                     "Password:",jtPassword
+                        
                         
                 };
                 int option = JOptionPane.showConfirmDialog(panel, message, "Ingrese la IP y el Nick", JOptionPane.OK_CANCEL_OPTION);
@@ -95,12 +98,13 @@ public class PanelSuperior {
                      {   
                          String ip = jtip.getText();
                          String nick = jtnick.getText();
+                         String password = jtPassword.getText();
                     try {
-                        Cliente cliente = new Cliente(ip,nick);
+                        Cliente cliente = new Cliente(ip,nick,password);
                         if(cliente.estado == 1){
                             JOptionPane.showMessageDialog(panel, "Conectado al servidor correctamente!");
                         }else{
-                            JOptionPane.showMessageDialog(panel, "El usuario ingresado ya esta regitrado!");
+                            //JOptionPane.showMessageDialog(panel, "El usuario ingresado ya esta regitrado!");
                         }
                         
                     } catch (RemoteException | NotBoundException | MalformedURLException ex) {

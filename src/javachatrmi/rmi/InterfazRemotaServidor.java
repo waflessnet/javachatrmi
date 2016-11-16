@@ -15,7 +15,7 @@ import javachatrmi.Usuario;
 public interface InterfazRemotaServidor extends Remote {
  
   public void  distribuirMensaje(String mensaje,Color color) throws RemoteException;
-  public Usuario registrar(String login,InterfazRemotaCliente cliente) throws RemoteException;
+  public Usuario registrar(String login,String pass ,InterfazRemotaCliente cliente) throws RemoteException;
   public boolean desconectar(InterfazRemotaCliente cliente) throws RemoteException;
   public void actualizarListaUsuarios() throws RemoteException;
 }

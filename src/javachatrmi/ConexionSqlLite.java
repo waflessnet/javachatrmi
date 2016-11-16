@@ -5,6 +5,7 @@
  */
 package javachatrmi;
 
+import java.awt.Color;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,4 +95,25 @@ public class ConexionSqlLite {
      }
      return false;
  }
+ 
+ public boolean existUser(String nick){
+     
+      String sql0 = "SELECT id,nick FROM usuario WHERE nick='"+nick+"';";
+        try {
+         Statement stmt = connect.createStatement();
+         ResultSet rs = stmt.executeQuery(sql0);
+         while ( rs.next() ) {
+            return true;
+      }
+      rs.close();
+      stmt.close();
+      //connect.close();
+         
+         
+     }catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+     }
+     return false;
+ }
+ 
 }

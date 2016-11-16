@@ -33,20 +33,35 @@ public class ObjetoServidorRemoto extends UnicastRemoteObject implements Interfa
         lite.connect(); 
     }
     @Override
-    public synchronized Usuario  registrar(String login,InterfazRemotaCliente cliente) throws RemoteException {
+    public synchronized Usuario  registrar(String login,String pass, InterfazRemotaCliente cliente) throws RemoteException {
         
         Usuario userAux = new Usuario("",new Color(1,1,1),-1);
-        if(!this.chacalitosRegistrados.contains(login)) {
-            if (!(ObjetoServidorRemoto.clienteList.contains(cliente))){
+        
+        if(!lite.existUser(login)){
+             if (!(ObjetoServidorRemoto.clienteList.contains(cliente))){
                 this.chacalitosRegistrados.add(login);
                 ObjetoServidorRemoto.clienteList.add(cliente);
                 userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
                 ObjetoServidorRemoto.usuariosList.add(userAux);
-                userAux.setPass("123");
+                userAux.setPass(pass);
                 lite.guardarUsuario(userAux);
                 //lite.close();
             }
+            
+        }else{
+           if(lite.checkUserPass(login, pass)){
+               if (!(ObjetoServidorRemoto.clienteList.contains(cliente))){
+                this.chacalitosRegistrados.add(login);
+                ObjetoServidorRemoto.clienteList.add(cliente);
+                userAux = new Usuario(login,this.obtenerColor(),ObjetoServidorRemoto.clienteList.size()-1);
+                ObjetoServidorRemoto.usuariosList.add(userAux);
+                userAux.setPass(pass);
+                lite.guardarUsuario(userAux);
+                //lite.close();
+            }
+           }
         }
+        
         return  userAux;
     }
     /**
